@@ -271,7 +271,7 @@ def mongodb_connection_test(request):
                 'user_id': str(test_user.id),
                 'task_id': str(test_task.id),
                 'project_id': str(test_project.id),
-                'database': 'nosql_project_db'
+                'database': 'task_manager'
             }
         })
         

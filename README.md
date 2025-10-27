@@ -40,7 +40,7 @@ A Django project demonstrating NoSQL database integration using MongoDB Atlas an
    Create a `.env` file in the project root:
    ```env
    MONGODB_CONNECTION_STRING=mongodb+srv://username:password@cluster.mongodb.net/
-   MONGODB_DB_NAME=nosql_project_db
+   MONGODB_DB_NAME=task_manager
    DJANGO_SECRET_KEY=your-secret-key-here
    DJANGO_DEBUG=True
    ```

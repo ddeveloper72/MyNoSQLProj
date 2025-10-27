@@ -135,7 +135,7 @@ try:
     
     MONGODB_SETTINGS = {
         'host': os.getenv('MONGODB_CONNECTION_STRING', 'mongodb://localhost:27017/'),
-        'db': os.getenv('MONGODB_DB_NAME', 'nosql_project_db'),
+        'db': os.getenv('MONGODB_DB_NAME', 'task_manager'),
         'connect': False,  # Connect on demand
     }
 
