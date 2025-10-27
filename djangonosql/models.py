@@ -19,7 +19,8 @@ try:
         
         meta = {
             'collection': 'users',
-            'indexes': ['username', 'email']
+            'auto_create_index': False,  # Disable automatic index creation
+            # 'indexes': ['username', 'email']  # Commented out for Atlas compatibility
         }
         
         def __str__(self):
@@ -72,7 +73,8 @@ try:
         
         meta = {
             'collection': 'tasks',
-            'indexes': ['created_by', 'status', 'created_at']
+            'auto_create_index': False,  # Disable automatic index creation
+            # 'indexes': ['created_by', 'status', 'created_at']  # Commented out for Atlas compatibility
         }
         
         def save(self, *args, **kwargs):
@@ -101,7 +103,8 @@ try:
         
         meta = {
             'collection': 'projects',
-            'indexes': ['name', 'owner', 'created_at']
+            'auto_create_index': False,  # Disable automatic index creation
+            # 'indexes': ['name', 'owner', 'created_at']  # Commented out for Atlas compatibility
         }
         
         def __str__(self):
