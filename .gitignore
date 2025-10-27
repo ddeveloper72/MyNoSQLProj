@@ -1,1 +1,16 @@
 db.sqlite3
+
+#Ignore vscode AI rules
+.github\instructions\codacy.instructions.md
+
+# Visual Studio Code settings
+.vscode/
+
+# Local environment variables
+.env
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd

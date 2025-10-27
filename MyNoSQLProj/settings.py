@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-s_6mpub6wf6=e#&&dm)3m#b9qgmj40(h%l9n%teihda9%26_tb'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-s_6mpub6wf6=e#&&dm)3m#b9qgmj40(h%l9n%teihda9%26_tb')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', 'True').lower() == 'true'
 
 ALLOWED_HOSTS = []
 
@@ -37,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mongoengine',
+    'djangonosql',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +128,26 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# MongoDB Configuration
+try:
+    import mongoengine
+    
+    MONGODB_SETTINGS = {
+        'host': os.getenv('MONGODB_CONNECTION_STRING', 'mongodb://localhost:27017/'),
+        'db': os.getenv('MONGODB_DB_NAME', 'nosql_project_db'),
+        'connect': False,  # Connect on demand
+    }
+
+    # Connect to MongoDB
+    mongoengine.connect(
+        db=MONGODB_SETTINGS['db'],
+        host=MONGODB_SETTINGS['host'],
+        connect=MONGODB_SETTINGS['connect']
+    )
+    
+    MONGODB_ENABLED = True
+    
+except ImportError:
+    print("Warning: mongoengine not installed. MongoDB features will be disabled.")
+    MONGODB_ENABLED = False
